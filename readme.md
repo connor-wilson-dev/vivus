@@ -48,9 +48,9 @@ However, there's a problem with this. The `strokeDashoffset` property is only av
 
 *The animation always draws elements in the same order as they are defined in the SVG tag.*
 
-There are few conditions that your SVG must meet:
+There are a few conditions that your SVG must meet:
 
-- All elements must have a stroke property and cannot be filled. This is because the animation only looks to progressively draw strokes and will not check for filled colours. For example: fill: "none"; stroke: "#FFF";
+- All elements must have a stroke property, and cannot be filled. This is because the animation only looks to progressively draw strokes and will not check for filled colours. For example: fill: "none"; stroke: "#FFF";
 
 - You should avoid creating any hidden path elements in your SVG. Vivus considers them all eligible to be animated, so it is advised to remove them before playing with it. If they are not removed the animation might not achieve the desired effect, with blank areas and gaps appearing.
 
@@ -193,7 +193,7 @@ new Vivus('my-svg-id', {
 }, myCallback);
 ```
 
-**WARNING**: `animTimingFunction` is called at every frame of the animation, and `pathTimingFunction` is also called at every frame for each path of your SVG. So be careful about them. Keep it simple, or it can affect the performance.
+**WARNING**: `animTimingFunction` is called at every frame of the animation, and `pathTimingFunction` is also called at every frame for each path of your SVG. So be careful using them. Keep it simple, or it can affect the performance.
 
 ## Extra attributes
 
