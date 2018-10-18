@@ -6,8 +6,8 @@ var setupEnv, requestAnimFrame, cancelAnimFrame, parsePositiveInt;
  * Vivus
  * Beta version
  *
- * Take any SVG and make the animation
- * to give give the impression of live drawing
+ * Take any SVG and make it animated to
+ * give the impression of live drawing
  *
  * This in more than just inspired from codrops
  * At that point, it's a pure fork.
