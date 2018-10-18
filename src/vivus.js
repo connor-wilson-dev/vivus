@@ -10,7 +10,7 @@ var setupEnv, requestAnimFrame, cancelAnimFrame, parsePositiveInt;
  * to give give the impression of live drawing
  *
  * This is more than just inspired from codrops
- * At that point, it's a pure fork.
+ * At this point, it's a pure fork.
  */
 
 /**
