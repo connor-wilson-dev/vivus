@@ -527,21 +527,20 @@ Vivus.prototype.getStatus = function () {
 };
 
 /**
- * Reset the instance to the initial state : undraw
- * Be careful, it just reset the animation, if you're
- * playing the animation, this won't stop it. But just
- * make it start from start.
- *
+ * Reset the instance to the initial state : undrawn.
+ * Be careful, this just resets the animation. If you are
+ * playing the animation, this will not stop it. Instead
+ * the animation will start over.
  */
 Vivus.prototype.reset = function () {
   return this.setFrameProgress(0);
 };
 
 /**
- * Set the instance to the final state : drawn
- * Be careful, it just set the animation, if you're
- * playing the animation on rewind, this won't stop it.
- * But just make it start from the end.
+ * Set the instance to the final state : drawn.
+ * Be careful, this just sets the animation. If you are
+ * playing the animation on rewind, this will not stop it.
+ * The animation will just start from the end.
  *
  */
 Vivus.prototype.finish = function () {
@@ -562,13 +561,12 @@ Vivus.prototype.setFrameProgress = function (progress) {
 
 /**
  * Play the animation at the desired speed.
- * Speed must be a valid number (no zero).
+ * Speed must be a valid non-zero number, Int or Float.
  * By default, the speed value is 1.
  * But a negative value is accepted to go forward.
  *
- * And works with float too.
- * But don't forget we are in JavaScript, se be nice
- * with him and give him a 1/2^x value.
+ * But don't forget we are using JavaScript, so be nice
+ * with them and give them a 1/2^x value.
  *
  * @param  {number} speed Animation speed [optional]
  */
@@ -596,7 +594,7 @@ Vivus.prototype.play = function (speed, callback) {
 };
 
 /**
- * Stop the current animation, if on progress.
+ * Stop the current animation, if in progress.
  * Should not trigger any error.
  *
  */
@@ -633,7 +631,7 @@ Vivus.prototype.destroy = function () {
  */
 
 /**
- * Method to best guess if a path should added into
+ * Method to best guess if a path should be added into
  * the animation or not.
  *
  * 1. Use the `data-vivus-ignore` attribute if set
@@ -644,7 +642,7 @@ Vivus.prototype.destroy = function () {
  * It will be used for a beta phase.
  *
  * Other improvments are planned. Like detecting
- * is the path got a stroke or a valid opacity.
+ * if the path has a stroke or a valid opacity.
  */
 Vivus.prototype.isInvisible = function (el) {
   var rect,
@@ -696,8 +694,10 @@ Vivus.prototype.isInViewport = function (el, h) {
     elTop        = scrolled + elBCR.top,
     elBottom     = elTop + elHeight;
 
-  // if 0, the element is considered in the viewport as soon as it enters.
-  // if 1, the element is considered in the viewport only when it's fully inside
+  // if 0, the element is considered in the viewport as 
+  // soon the top of the element enters.
+  // if 1, the element is considered in the viewport only 
+  // when the bottom of the element enters the viewport.
   // value in percentage (1 >= h >= 0)
   h = h || 0;
 
@@ -783,7 +783,7 @@ setupEnv = function () {
 
 /**
  * Parse string to integer.
- * If the number is not positive or null
+ * If the number is negative or null
  * the method will return the default value
  * or 0 if undefined
  *
