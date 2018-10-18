@@ -26,16 +26,16 @@ var setupEnv, requestAnimFrame, cancelAnimFrame, parsePositiveInt;
  *   forceRender <boolean> force the browser to re-render all updated path items
  *   selfDestroy <boolean> removes all extra styling on the SVG, and leaves it as original
  *
- * The attribute 'type' is by default on 'delayed'.
+ * The attribute 'type' is 'delayed' by default.
  *  - 'delayed'
- *    all paths are draw at the same time but with a
+ *    all paths are drawn at the same time but with a
  *    little delay between them before start
  *  - 'sync'
- *    all path are start and finish at the same time
+ *    all paths are started and finished at the same time
  *  - 'oneByOne'
- *    only one path is draw at the time
- *    the end of the first one will trigger the draw
- *    of the next one
+ *    each path is drawn one at a time, 
+ *    the ending of the active path 
+ *    triggers the start of the next path
  *
  * All these values can be overwritten individually
  * for each path item in the SVG
@@ -96,7 +96,7 @@ Vivus.EASE_OUT_BOUNCE = function (x) {
  * The method will not return anything, but will throw an
  * error if the parameter is invalid
  *
- * @param {DOM|String}   element  SVG Dom element or id of it
+ * @param {DOM|String}   element  SVG Dom element or id
  */
 Vivus.prototype.setElement = function (element, options) {
   var onLoad, self;
@@ -242,7 +242,7 @@ Vivus.prototype.setOptions = function (options) {
 
 /**
  * Set up callback to the instance
- * The method will not return enything, but will throw an
+ * The method will not return anything, but will throw an
  * error if the parameter is invalid
  *
  * @param  {Function} callback Callback for the animation end
@@ -263,9 +263,9 @@ Vivus.prototype.setCallback = function (callback) {
 
 /**
  * Map the svg, path by path.
- * The method return nothing, it just fill the
- * `map` array. Each item in this array represent
- * a path element from the SVG, with informations for
+ * The method returns nothing, it just fills the
+ * `map` array. Each item in this array represents
+ * a path element from the SVG, with information for
  * the animation.
  *
  * ```
@@ -365,15 +365,15 @@ Vivus.prototype.mapping = function () {
 
 /**
  * Interval method to draw the SVG from current
- * position of the animation. It update the value of
+ * position of the animation. It updates the value of
  * `currentFrame` and re-trace the SVG.
  *
  * It use this.handle to store the requestAnimationFrame
- * and clear it one the animation is stopped. So this
- * attribute can be used to know if the animation is
- * playing.
+ * and clears it once the animation is stopped. Therefore, this
+ * attribute can be used to determine if the animation is
+ * playing or not.
  *
- * Once the animation at the end, this method will
+ * Once the animation has ended, this method will
  * trigger the Vivus callback.
  *
  */
@@ -407,15 +407,15 @@ Vivus.prototype.drawer = function () {
 };
 
 /**
- * Draw the SVG at the current instant from the
+ * Draw the SVG at the current instance from the
  * `currentFrame` value. Here is where most of the magic is.
  * The trick is to use the `strokeDashoffset` style property.
  *
- * For optimisation reasons, a new property called `progress`
- * is added in each item of `map`. This one contain the current
- * progress of the path element. Only if the new value is different
- * the new value will be applied to the DOM element. This
- * method save a lot of resources to re-render the SVG. And could
+ * For optimization, a new property called `progress`
+ * is added to each item of `map`. This one contains the current
+ * progress of the path element. If the new progress value is 
+ * different, then the new value will be applid to the DOM element.
+ * This method saves a lot of resources when re-rendering the SVG. And could
  * be improved if the animation couldn't be played forward.
  *
  */
@@ -435,13 +435,13 @@ Vivus.prototype.trace = function () {
 };
 
 /**
- * Method forcing the browser to re-render a path element
+ * Method for forcing the browser to re-render a path element
  * from it's index in the map. Depending on the `forceRender`
  * value.
  * The trick is to replace the path element by it's clone.
- * This practice is not recommended because it's asking more
- * ressources, too much DOM manupulation..
- * but it's the only way to let the magic happen on IE.
+ * This practice is not recommended because it asks for more
+ * resources, and there is too much DOM manupulation.
+ * It's the only way to let the magic happen on IE.
  * By default, this fallback is only applied on IE.
  *
  * @param  {Number} index Path index
@@ -459,9 +459,9 @@ Vivus.prototype.renderPath = function (index) {
  * When the SVG object is loaded and ready,
  * this method will continue the initialisation.
  *
- * This this mainly due to the case of passing an
- * object tag in the constructor. It will wait
- * the end of the loading to initialise.
+ * This is mainly in case an object tag is 
+ * passed to the constructor. Vivus will wait
+ * until the end of the loading to initialise.
  *
  */
 Vivus.prototype.init = function () {
@@ -481,12 +481,11 @@ Vivus.prototype.init = function () {
 };
 
 /**
- * Trigger to start of the animation.
+ * Trigger to start the animation.
  * Depending on the `start` value, a different script
  * will be applied.
  *
  * If the `start` value is not valid, an error will be thrown.
- * Even if technically, this is impossible.
  *
  */
 Vivus.prototype.starter = function () {
