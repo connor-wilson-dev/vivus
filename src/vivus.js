@@ -9,7 +9,7 @@ var setupEnv, requestAnimFrame, cancelAnimFrame, parsePositiveInt;
  * Take any SVG and make the animation
  * to give give the impression of live drawing
  *
- * This in more than just inspired from codrops
+ * This is more than just inspired from codrops
  * At that point, it's a pure fork.
  */
 
